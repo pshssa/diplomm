@@ -1,0 +1,115 @@
+<!-- Сообщаем браузеру как стоит обрабатывать эту страницу -->
+<!DOCTYPE html>
+<!-- Оболочка документа, указываем язык содержимого -->
+<html lang="ru">
+	<!-- Заголовок страницы, контейнер для других важных данных (не отображается) -->
+	<head>
+		<!-- Название вкладки в браузере -->
+		<title>Виртуальный помощник</title>
+		<!-- Подключаем наш css -->
+		<link rel="stylesheet" href="front.css">
+		<!-- Задаем кодировку страницы -->
+		<meta charset="UTF-8">
+		<!-- Адаптивный вид на всех устройствах -->
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<!-- Отображаемое тело страницы -->
+	<body>
+		<!-- Оболочка для демонстрации -->
+		<div class="wrapper">
+			<!-- Контент -->
+			<div class="content">
+				<div class="tabs">
+					<nav class="tabs__items">
+						<a href="#chat-bot" class="tabs__item"><span>Помощник</span></a>
+						<a href="#calculator" class="tabs__item"><span>Калькулятор</span></a>
+					</nav>
+					<div class="tabs__body">
+						<div id="chat-bot" class="tabs__block">
+							<div class="chat-container">
+								<div class="message-bubble ai">Приветствую вас! Я - виртуальный помощник.
+									<br>
+									Создан с одной целью - быть вашим надежным советником и помощником во всех финансовых вопросах.
+									<br>
+									Буду рад ответить на ваши вопросы, помочь разобраться в сложных финансовых вопросах и предоставить информацию, которая поможет вам принимать осознанные решения.
+									Не стесняйтесь обращаться ко мне с любыми вопросами о финансах - я здесь, чтобы помочь!</div>
+							</div>
+							<div class="chat-input">
+								<textarea placeholder="Your message..." class="chat-input__textarea" id="text-message" onkeypress="pressedKey(event);"></textarea>
+								<button type="submit" class="chat-input__send-message" onclick="sendMessage();">
+									<img src="svg/plane.svg" alt="Текстовое сообщение" height="20px" width="20px"/>
+								</button>
+								<button type="submit" class="chat-input__voice-message">
+									<img src="svg/mic.svg" alt="Голосовое сообщение" height="20px" width="20px"/>
+								</button>
+							</div>
+                        </div>
+						<div id="calculator" class="tabs__block">
+							<div class="side-nav">
+								<ul>
+									<li>
+										<a href="#tab_21">
+											<img src="svg/vklad.svg"><p>Вклад</p>
+										</a>
+									</li>
+									<li>
+										<a href="#tab_22">
+											<img src="svg/kredit.svg"><p>Кредит</p>
+										</a>
+									</li>
+									<li>
+										<a href="#tab_23">
+											<img src="svg/ipoteka.svg"><p>Ипотека</p>
+										</a>
+									</li>
+									<li>
+										<a href="#tab_24">
+											<img src="svg/strahovanie.svg"><p>Страхование</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="calculating">
+								<div id="tab_21" class="count">
+									<p>Вклад</p>
+								</div>
+								<div id="tab_22" class="count">
+									<p>Кредит</p>
+								</div>
+								<div id="tab_23" class="count">
+									<p>Ипотека</p>
+								</div>
+								<div id="tab_24" class="count">
+									<p>Страхование</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function sendMessage(){
+				if ((document.getElementById('text-message').value).replaceAll(" ", "").replaceAll("\n", "") != "") {
+					let chat = document.getElementsByClassName("chat-container")[0];
+					msgUser = document.createElement("div");
+					msgUser.className = "message-bubble user";
+					msgUser.innerHTML = document.getElementById('text-message').value.replaceAll("\n", "<br>");
+					chat.appendChild(msgUser);
+					document.getElementById('text-message').value = "";
+					msgAi = document.createElement("div");
+					msgAi.className = "message-bubble ai";
+					msgAi.innerHTML = "Функция ответа в разработке.";
+					chat.appendChild(msgAi);
+					chat.scrollTo(0, chat.scrollHeight);
+				}
+			}
+			function pressedKey(event){
+				if (event.keyCode == 13 && !event.shiftKey) {
+					event.preventDefault();
+    				sendMessage();
+				}
+        	}
+		</script>
+	</body>
+</html>

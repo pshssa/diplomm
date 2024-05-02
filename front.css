@@ -1,0 +1,280 @@
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    background-color: var(--color-bg-main);
+    font-family: "Poppins", "Inter", Arial, Helvetica, sans-serif;
+    color: var(--white);
+    font-size: 16px;
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    min-height: 100%;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+.content{
+    padding: 24px;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0px auto;
+    background-color: #181818;
+}
+.tabs{
+    margin: 0px 0px 48px 0px;
+}
+.tabs__body{
+    max-height: 60vh;
+}
+.tabs__items{
+    display: flex
+}
+.tabs__item:hover span{
+    color: var(--gold);
+    transition: 1s;
+}
+.tabs__item:hover:target span{
+    color: var(--white);
+    transition: 1s;
+}
+.tabs__item{
+    flex: 0 1 50%;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+}
+.tabs__item span{
+    position: relative;
+    z-index: 2;
+}
+.tabs__block{
+    position: relative;
+    padding: 20px;
+    font-size: 18px;
+    display: none;
+}
+.tabs__block:nth-child(1){
+    background-color: var(--color-bg-tab1);
+    border-radius: 0 20px 20px 20px;
+}
+.tabs__block:nth-child(1):before{
+    background-color: var(--color-bg-tab1);
+    left: 0;
+    border-radius: 20px 20px 0 0;
+}
+.tabs__block:nth-child(2){
+    background-color: var(--color-bg-tab2);
+    border-radius: 20px 0 20px 20px;
+}
+.tabs__block:nth-child(2):before{
+    background-color: var(--color-bg-tab2);
+    right: 0;
+    border-radius: 20px 20px 0 0;
+}
+.tabs__block:target{
+    display: block;
+    min-height: 720px;
+}
+.tabs__block::before{
+    content: "";
+    height: 48px;
+    width: 50%;
+    position: absolute;
+    top: -48px;
+}
+.chat-container{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 80vh;
+    background-color: #00000080;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar{
+    width: 0;
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+.chat-container::-webkit-scrollbar-thumb {
+    background: #dd03e41e;
+}
+.chat-container::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 20px 0 0 0;
+}
+@keyframes aniUser{
+    0% {transform: translateX(-200%);}
+  100% {transform: translateY(0);}
+}
+@keyframes aniAi{
+    0% {transform: translateX(200%);}
+  100% {transform: translateY(0);}
+}
+.message-bubble{
+    color: var(--white);
+    background-color: #333333;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    transform: translateX(200%);
+}
+.message-bubble.user{
+    animation: aniUser 0.66s forwards;
+    align-self: flex-end;
+    background-image: linear-gradient(0deg, #dd03e445, #5611ec45);
+}
+.message-bubble.ai{
+    animation: aniAi 0.66s forwards;
+    align-self: flex-start;
+    background-image: linear-gradient(30deg, #333333, #4b4b4b);
+}
+.chat-input{
+    height: 60px;
+    flex-shrink: 0;
+    background: #000;
+    border-radius: 0 0 20px 20px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 59px 36px;
+    grid-gap: 8px;
+    gap: 8px;
+    position: relative;
+}
+.chat-input__textarea{
+    resize: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    padding: 0 8px 0 0;
+    border-color: transparent;
+}
+.chat-input__send-message, .chat-input__voice-message{
+    background-image: linear-gradient(90deg, #444, #333);
+    border-radius: 20px;
+    border: none;
+    user-select: none;
+}
+.chat-input__send-message:hover, .chat-input__voice-message:hover{
+    transition: 0.4s;
+    background-image: linear-gradient(90deg, #333, #444);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.chat-input__send-message:active, .chat-input__voice-message:active{
+    background-image: linear-gradient(90deg, #444, #333);
+}
+@media (max-width: 600px){
+    .tabs__item span{
+        display: block;
+        width: 98px;
+        white-space: nowrap;
+        text-align: center;
+        overflow: hidden;
+        font-size: 14px;
+        text-overflow: ellipsis;
+    }
+    .side-nav ul li a img{
+        width: 32px !important;
+        margin-top: 12px;
+        margin-left: 6px;
+        transition: all 0.4s;
+    }
+    .side-nav ul li a{
+        justify-content: flex-start;
+    }
+}
+::selection{
+    color: var(--black);
+    text-shadow: var(--black) 0px 0px 0px;
+    background: var(--gold);
+}
+:root{
+    --black: #000;
+    --white: #fff;
+    --color-bg-tab1: #9278aa10;
+    --color-bg-tab2: #eb869810;
+    --color-bg-main: #121212;
+    --gold: #f3bc2f;
+}
+.side-nav{
+    width: 100px;
+    height: 680px;
+    position: fixed;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex: 0 1 25%;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    transition: all 0.2s;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.side-nav ul{
+    list-style: none;
+    padding: 0 15px;
+}
+.side-nav ul li{
+    cursor: pointer;
+    margin: 98px 0;
+}
+.side-nav ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.side-nav ul li a img{
+    width: 48px;
+    margin-right: 10px;
+}
+.side-nav ul li a{
+    color: #666;
+    text-decoration: none;
+}
+.side-nav ul li a p{
+    white-space: nowrap;
+    display: none;
+}
+.side-nav:hover{
+    width: 220px;
+    transition: all 0.4s;
+}
+.side-nav:hover ul li a p{
+    display: block;
+}
+.side-nav:hover ul li a img{
+    margin-right: 10px;
+}
+.side-nav:hover ul li a{
+    justify-content: flex-start;
+}
+.side-nav ul li a:hover{
+    background-color: #00000020;
+    border-radius: 20px;
+    transition: 0.66s;
+}
+.count{
+}
+.count:target{
+    display: block;
+}
+.count p{
+    position: relative;
+    font-size: 18px;
+    background-color: #fff;
+    display: none;
+}
